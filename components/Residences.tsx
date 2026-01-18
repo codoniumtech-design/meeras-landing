@@ -27,7 +27,7 @@ export default function Residences() {
             className="relative h-[500px] rounded-lg overflow-hidden group"
           >
             <img
-              src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+              src="https://res.cloudinary.com/dvtqstadx/image/upload/v1768757721/The_Edit_at_d3_Int-1-BR_LV_01_tapsxq.jpg"
               alt="Luxury bedroom"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -42,7 +42,7 @@ export default function Residences() {
             className="relative h-[500px] rounded-lg overflow-hidden group"
           >
             <img
-              src="https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80"
+              src="https://res.cloudinary.com/dvtqstadx/image/upload/v1768757894/The_Edit_at_d3_Int-4-BR_BR_02_oyjcx9.jpg"
               alt="Modern living space"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />

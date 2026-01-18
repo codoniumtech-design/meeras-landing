@@ -6,27 +6,27 @@ import { useState } from "react";
 const galleryImages = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768758596/The_Edit_at_d3_Int-2-BR_LV_01_gzwjep.jpg",
     alt: "Luxury bedroom interior",
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&q=80",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768758610/The_Edit_at_d3_Int-3-BR_BH_01_oufdzu.jpg",
     alt: "Modern living room",
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768758604/The_Edit_at_d3_Int-3-BR_LV_01_jcwltn.jpg",
     alt: "Elegant dining area",
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768758610/The_Edit_at_d3_Int-3-BR_BR_01_arqgps.jpg",
     alt: "Luxury bathroom",
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1600607688969-a5d83319c6e4?w=800&q=80",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768758604/The_Edit_at_d3_Int-3-BR_LV_01_jcwltn.jpg",
     alt: "Modern kitchen",
   },
   {

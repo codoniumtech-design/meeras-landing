@@ -19,7 +19,7 @@ export default function Hero() {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1920&q=80')",
+            "url('/assets/landing.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
@@ -84,8 +84,7 @@ export default function Hero() {
               size="lg"
               className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-charcoal-900"
               onClick={() => {
-                // Placeholder for download brochure
-                window.open("/brochure.pdf", "_blank");
+                window.open("https://dubaiholding.box.com/shared/static/zkucfm3b5nso3tpc6f3cnfldm6le91q5?dl=1", "_blank");
               }}
             >
               <Download className="mr-2 h-4 w-4" />
