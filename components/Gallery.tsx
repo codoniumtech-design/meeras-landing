@@ -55,12 +55,18 @@ const galleryImages = [
   },
   {
     id: 11,
-    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768846532/compressed-1768846472441_zlgygu.jpg",
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768846531/compressed-1768846501758_icn9ow.jpg",
     alt: "Sky garden view",
   },
+
   {
     id: 12,
     src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768846532/compressed-1768846445855_h2jjc2.jpg",
+    alt: "Sky garden view",
+  },
+  {
+    id: 13,
+    src: "https://res.cloudinary.com/dvtqstadx/image/upload/v1768846532/compressed-1768846457441_ei2msv.jpg",
     alt: "Sky garden view",
   },
 ];
