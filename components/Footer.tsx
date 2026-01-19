@@ -57,8 +57,8 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-sm text-beige-300">
-              <li>Email: info@premiumproperty.com</li>
-              <li>Phone: +971 4 XXX XXXX</li>
+              <li>Email: info@staredge.ae</li>
+              <li>Phone: +971545435416</li>
               <li>Dubai, UAE</li>
             </ul>
           </div>

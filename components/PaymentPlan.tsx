@@ -96,7 +96,7 @@ export default function PaymentPlanCarousel() {
   }, [isPaused]);
 
   return (
-    <section className="py-20 bg-[#050505] text-white overflow-hidden relative">
+    <section id="payment-plan" className="py-20 bg-[#050505] text-white overflow-hidden relative">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-[#050505] to-[#050505] pointer-events-none" />
       

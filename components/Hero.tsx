@@ -25,13 +25,7 @@ export default function Hero() {
   return (
     <section
       className="
-        relative 
-        min-h-[100svh]
-        flex 
-        items-center 
-        justify-center 
-        overflow-hidden
-        pt-24
+     relative min-h-[100svh] flex items-center justify-center pt-24
       "
     >
       {/* Background Image */}
