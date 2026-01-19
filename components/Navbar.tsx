@@ -2,11 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+// Brand Colors (Hardcoded for consistency)
+const COLORS = {
+  primary: "text-[#0e3025]", // Deep Luxurious Green (Almost Black)
+  accent: "text-[#cfa346]",  // Gold/Bronze for active states
+  bgScroll: "bg-white/90",   // Stronger white on scroll
+  bgInitial: "bg-white/60",  // Semi-transparent on top
+};
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -17,172 +26,139 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
   const pathname = usePathname();
 
+  // Handle Scroll (Glass Effect & Active State Spy)
   useEffect(() => {
     const handleScroll = () => {
-      // Add a small buffer so the transition feels intentional
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      
+      // 1. Navbar compact effect trigger
+      setIsScrolled(scrollY > 10);
+
+      // 2. Active State Logic (Home vs Gallery)
+      // Only run this logic on the homepage
+      if (pathname === "/") {
+        const gallerySection = document.getElementById("gallery");
+        if (gallerySection) {
+          const offset = gallerySection.offsetTop - 100; // Buffer
+          if (scrollY >= offset) {
+            setActiveSection("Gallery");
+          } else {
+            setActiveSection("Home");
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
-  const handleLinkClick = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  // Helper function to determine text colors based on scroll state
-  const getTextColor = () => {
-    if (isScrolled) return "text-charcoal-900 hover:text-charcoal-700";
-    return "text-white hover:text-white/80";
-  };
+  // Handle Page Changes
+  useEffect(() => {
+    if (pathname === "/contact") setActiveSection("Contact Us");
+    else if (pathname === "/" && window.location.hash !== "#gallery") setActiveSection("Home");
+  }, [pathname]);
 
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm py-2" // Slightly smaller padding when scrolled
-          : "bg-transparent py-4" // Larger padding when at top
+          ? `${COLORS.bgScroll} backdrop-blur-md border-gray-200/50 shadow-sm h-16` // Scrolled: Solid & Compact
+          : `${COLORS.bgInitial} backdrop-blur-sm border-transparent h-20 md:h-20` // Top: Slightly taller, airy
       )}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="container mx-auto px-4 h-full">
+        <div className="flex items-center justify-between h-full">
           
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="flex items-center space-x-1 transition-transform duration-300 group-hover:scale-105">
-              <div
-                className={cn(
-                  "h-8 w-1 transition-colors duration-300",
-                  isScrolled ? "bg-charcoal-900" : "bg-white"
-                )}
-              ></div>
-              <div
-                className={cn(
-                  "h-6 w-1 transition-colors duration-300",
-                  isScrolled ? "bg-charcoal-900" : "bg-white"
-                )}
-              ></div>
-              <div
-                className={cn(
-                  "h-10 w-1 transition-colors duration-300",
-                  isScrolled ? "bg-charcoal-900" : "bg-white"
-                )}
-              ></div>
-            </div>
-            <span
-              className={cn(
-                "text-2xl font-bold tracking-widest uppercase transition-colors duration-300",
-                isScrolled ? "text-charcoal-900" : "text-white"
-              )}
-            >
-              MERAAS
-            </span>
-          </Link>
+          {/* --- LOGO --- */}
+         <Link href="/" className="relative h-full flex items-center shrink-0 py-2">
+  <div className="relative h-16 md:h-20 w-auto">
+    <Image 
+      src="/assets/logo.png"
+      alt="Star Edge"
+      width={400}
+      height={200}
+      className="object-contain h-full w-auto"
+      priority
+    />
+  </div>
+</Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          {/* --- DESKTOP MENU --- */}
+          <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => {
-              const isActive =
-                pathname === link.href ||
-                (link.href === "/#gallery" && pathname === "/");
+              const isActive = activeSection === link.label;
               
               return (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   className={cn(
-                    "text-sm font-semibold tracking-wide transition-all duration-300 relative py-1",
-                    getTextColor(),
-                    isActive && !isScrolled ? "text-white font-bold" : "",
-                    isActive && isScrolled ? "text-charcoal-900 font-bold" : ""
+                    "text-sm font-semibold tracking-wider uppercase transition-colors duration-300 relative py-1",
+                    isActive ? COLORS.accent : `${COLORS.primary} hover:opacity-70`
                   )}
                 >
                   {link.label}
                   {/* Underline Animation */}
                   <span className={cn(
-                    "absolute bottom-0 left-0 w-full h-0.5 transform scale-x-0 transition-transform duration-300 origin-left group-hover:scale-x-100",
-                    isActive ? "scale-x-100" : "",
-                    isScrolled ? "bg-charcoal-900" : "bg-white"
+                    "absolute bottom-0 left-0 w-full h-[2px] bg-[#cfa346] transform transition-transform duration-300 origin-left",
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   )}></span>
                 </Link>
               );
             })}
-            
+
             <Button
-              variant={isScrolled ? "premium" : "outline"} // Switch variant based on scroll
-              size="lg"
-              className={cn(
-                "font-semibold tracking-wide transition-all duration-300",
-                !isScrolled && "border-white text-white hover:bg-white hover:text-charcoal-900 hover:border-white bg-transparent"
-              )}
-              onClick={() => {
-                const element = document.getElementById("register-interest");
-                if (element) {
-                  element.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              className="bg-[#0e3025] hover:bg-[#1a4d3d] text-white text-xs font-bold tracking-widest uppercase px-6 py-5 rounded-none shadow-md transition-all"
+              onClick={() => document.getElementById("register-interest")?.scrollIntoView({ behavior: "smooth" })}
             >
               Register Interest
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* --- MOBILE TOGGLE --- */}
           <button
-            className={cn(
-              "md:hidden p-2 transition-colors duration-300 rounded-md focus:outline-none focus:ring-2 focus:ring-inset",
-              isScrolled ? "text-charcoal-900 hover:bg-gray-100" : "text-white hover:bg-white/20 focus:ring-white"
-            )}
+            className={cn("md:hidden p-2", COLORS.primary)}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="h-7 w-7" />
-            ) : (
-              <Menu className="h-7 w-7" />
-            )}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* --- MOBILE DROPDOWN --- */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-white shadow-lg border-t border-gray-100 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden shadow-xl"
           >
             <div className="flex flex-col p-6 space-y-4">
               {navLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
-                  onClick={handleLinkClick}
+                  onClick={() => setIsMobileMenuOpen(false)}
                   className={cn(
-                    "block px-4 py-3 text-lg font-medium rounded-md transition-colors",
-                    pathname === link.href
-                      ? "bg-gray-50 text-charcoal-900 font-semibold"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-charcoal-900"
+                    "text-lg font-medium tracking-wide",
+                    activeSection === link.label ? "text-[#cfa346]" : "text-[#0e3025]"
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
               <div className="pt-4 border-t border-gray-100">
-                <Button
-                  variant="premium"
-                  className="w-full py-6 text-lg shadow-md"
+                <Button 
+                  className="w-full bg-[#0e3025] text-white uppercase tracking-widest py-6"
                   onClick={() => {
-                    handleLinkClick();
-                    const element = document.getElementById("register-interest");
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" });
-                    }
+                     setIsMobileMenuOpen(false);
+                     document.getElementById("register-interest")?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
                   Register Interest

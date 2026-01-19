@@ -6,8 +6,8 @@ import { ChevronRight, ChevronLeft, Building2, Calendar, CheckCircle2 } from "lu
 
 // --- Data Extracted from your Image ---
 const projectDetails = {
-  name: "THE EDIT",
-  developer: "MERAAS",
+  name: "Star Edge",
+  developer: "Real Estate",
   handover: "August 2030",
 };
 
@@ -108,7 +108,7 @@ export default function PaymentPlanCarousel() {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-thin tracking-[0.2em] text-white uppercase"
           >
-            {projectDetails.name} <span className="text-[#D4AF37] text-2xl align-top">at {projectDetails.developer}</span>
+            {projectDetails.name} <span className="text-[#D4AF37] text-2xl align-top"> {projectDetails.developer}</span>
           </motion.h2>
           <div className="w-24 h-1 bg-[#D4AF37] mx-auto rounded-full opacity-80" />
           <p className="text-neutral-400 text-sm md:text-base tracking-widest uppercase">
