@@ -6,6 +6,7 @@ import PaymentPlan from "@/components/PaymentPlan";
 import Location from "@/components/Location";
 import Gallery from "@/components/Gallery";
 import RegisterInterest from "@/components/RegisterInterest";
+import FloorPlans from "@/components/FloorPlan";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <QuickNavigation />
       <AboutSection />
       <Residences />
+      <FloorPlans/>
       <PaymentPlan />
       <Location />
       <Gallery />

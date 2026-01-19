@@ -174,8 +174,7 @@ export default function ContactPage() {
                       <h3 className="font-medium text-charcoal-900 mb-1">
                         Email
                       </h3>
-                      <p className="text-charcoal-600">info@premiumproperty.com</p>
-                      <p className="text-charcoal-600">sales@premiumproperty.com</p>
+                      <p className="text-charcoal-600">info@staredge.ae</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -186,8 +185,7 @@ export default function ContactPage() {
                       <h3 className="font-medium text-charcoal-900 mb-1">
                         Phone
                       </h3>
-                      <p className="text-charcoal-600">+971 4 XXX XXXX</p>
-                      <p className="text-charcoal-600">+971 50 XXX XXXX</p>
+                      <p className="text-charcoal-600">+971545435416</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
