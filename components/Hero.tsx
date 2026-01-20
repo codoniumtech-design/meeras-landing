@@ -25,12 +25,23 @@ export default function Hero() {
   return (
     <section
       className="
-     relative min-h-[100svh] flex items-center justify-center pt-24
+     relative
+    min-h-[calc(100svh-var(--header-height))]
+    pt-[var(--header-height)]
+    flex
+    items-center
+    justify-center
       "
     >
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="      absolute
+      inset-x-0
+      top-[var(--header-height)]
+      bottom-0
+      bg-cover
+      bg-center
+      bg-no-repeat"
         style={{ backgroundImage: "url('/assets/11.jpg')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/70" />
