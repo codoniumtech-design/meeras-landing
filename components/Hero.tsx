@@ -33,7 +33,6 @@ export default function Hero() {
     justify-center
       "
     >
-      {/* Background Image */}
       <div
         className="      absolute
       inset-x-0
